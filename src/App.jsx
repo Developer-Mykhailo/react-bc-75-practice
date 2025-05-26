@@ -1,7 +1,9 @@
 import BlogCard from "./components/BlogCard/BlogCard";
+import Friendlist from "./components/Friendlist/Friendlist";
 import Statistics from "./components/Statistics/Statistics";
 import article from "./data/article.json";
 import stats from "./data/stats.json";
+import friends from "./data/friends.json";
 function App() {
   return (
     <>
@@ -17,6 +19,7 @@ function App() {
       />
       {/* <BlogCard {...article} /> */}
       <Statistics stats={stats} title="Main Statistics" />
+      <Friendlist friends={friends}/>
     </>
   );
 }
