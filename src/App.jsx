@@ -1,6 +1,7 @@
 import BlogCard from "./components/BlogCard/BlogCard";
+import Statistics from "./components/Statistics/Statistics";
 import article from "./data/article.json";
-
+import stats from "./data/stats.json";
 function App() {
   return (
     <>
@@ -15,6 +16,7 @@ function App() {
         name={article.name}
       />
       {/* <BlogCard {...article} /> */}
+      <Statistics stats={stats} title="Main Statistics" />
     </>
   );
 }
