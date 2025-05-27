@@ -1,8 +1,11 @@
-function StatisticItem({ title, total }) {
+import s from "./StatisticItem.module.css";
+
+function StatisticItem({ title, total, icon: Icon }) {
   return (
     <>
-      <p>{title}</p>
-      <p>{total}</p>
+      <Icon className={s.icon} />
+      <p className={s.counter}>{total}</p>
+      <p className={s.text}>{title}</p>
     </>
   );
 }
