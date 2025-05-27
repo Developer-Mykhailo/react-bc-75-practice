@@ -1,10 +1,19 @@
-const FriendlistItem = ({ name, avatar }) => {
+import { BiDollarCircle } from "react-icons/bi";
+import { FcBullish, FcBearish } from "react-icons/fc";
+
+import s from "./FrendListItem.module.css";
+
+const FriendlistItem = ({ name, avatar, capital, isIncrease }) => {
   return (
-    <div>
-      FriendlistItem
-      <img src={avatar} alt={name} />
-      <p>{name}</p>
-    </div>
+    <>
+      <img className={s.avatar} src={avatar} alt={name} />
+      <p className={s.title}>{name}</p>
+      <span className={s.capital}>
+        {capital}
+        <BiDollarCircle />
+        {isIncrease ? <FcBullish /> : <FcBearish />}
+      </span>
+    </>
   );
 };
 
