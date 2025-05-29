@@ -1,4 +1,4 @@
-import { formateDateToNow } from "../../helpers/formate-date";
+import { formateDateToNow } from "../../../helpers/formate-date";
 import style from "./BlogCard.module.css";
 
 const BlogCard = ({
