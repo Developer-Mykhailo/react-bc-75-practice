@@ -1,33 +1,23 @@
-import BlogCard from "./components/BlogCard/BlogCard";
-import Friendlist from "./components/Friendlist/Friendlist";
-import Statistics from "./components/Statistics/Statistics";
-import article from "./data/article.json";
-import stats from "./data/stats.json";
-import friends from "./data/friends.json";
-import Section from "./components/Section/Section";
-import Container from "./components/Container/Container";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import "react-tabs/style/react-tabs.css";
+import Points from "./tabs/Points";
+import Props from "./tabs/Props";
 
 function App() {
   return (
-    <>
-      <Section>
-        <Container>
-          <h1>bc-75</h1>
-          <BlogCard
-            avatar={article.avatar}
-            postedAt={article.postedAt}
-            poster={article.poster}
-            tag={article.tag}
-            title={article.title}
-            description={article.description}
-            name={article.name}
-          />
-          {/* <BlogCard {...article} /> */}
-          <Statistics stats={stats} title="Main Statistics" />
-          <Friendlist friends={friends} />
-        </Container>
-      </Section>
-    </>
+    <Tabs>
+      <TabList>
+        <Tab>Points</Tab>
+        <Tab>Props</Tab>
+      </TabList>
+
+      <TabPanel>
+        <Points />
+      </TabPanel>
+      <TabPanel>
+        <Props />
+      </TabPanel>
+    </Tabs>
   );
 }
 
