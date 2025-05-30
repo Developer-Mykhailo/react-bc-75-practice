@@ -1,6 +1,6 @@
 import css from "./Options.module.css";
 
-const Options = ({ handleClick, points }) => {
+const Options = ({ handleClick, points, totalPoints, resetPoints }) => {
   return (
     <ul className={css.list}>
       {points.map((key, index) => (
@@ -13,6 +13,13 @@ const Options = ({ handleClick, points }) => {
           </button>
         </li>
       ))}
+      {totalPoints > 0 && (
+        <li>
+          <button onClick={resetPoints} className={css.resetButton}>
+            Reset
+          </button>
+        </li>
+      )}
     </ul>
   );
 };
