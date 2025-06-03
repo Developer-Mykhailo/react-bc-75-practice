@@ -1,39 +1,33 @@
-import { useState } from "react";
-import toast from "react-hot-toast";
-import style from "./Form.module.css";
 import { CiCirclePlus } from "react-icons/ci";
+import { ErrorMessage, Field, Form, Formik } from "formik";
+import style from "./Form.module.css";
+import { validationSchema } from "../../validation/validation";
 
-const Form = ({ onSubmit }) => {
-  const [text, setText] = useState("");
-
-  const handleChange = (e) => {
-    setText(e.target.value);
-  };
-
-  const handleSumbit = (e) => {
-    e.preventDefault();
-    if (!text.trim()) {
-      toast.error("Enter some text");
-      return;
-    }
+const SubmitForm = ({ onSubmit }) => {
+  const handleSumbit = ({ text }, actions) => {
     onSubmit(text);
-    setText("");
+    actions.resetForm();
   };
 
   return (
-    <form className={style.form} onSubmit={handleSumbit}>
-      <input
-        className={style.input}
-        type="text"
-        name="text"
-        onChange={handleChange}
-        value={text}
-      />
-      <button className={style.button} type="submit">
-        <CiCirclePlus className={style.icon} />
-      </button>
-    </form>
+    <Formik
+      initialValues={{ text: "" }}
+      validationSchema={validationSchema}
+      onSubmit={handleSumbit}
+    >
+      <Form className={style.form}>
+        <Field name="text" placeholder="todo text" className={style.input} />
+        <button className={style.button} type="submit">
+          <CiCirclePlus className={style.icon} />
+        </button>
+        <ErrorMessage
+          name="text"
+          component="p"
+          className={style.errorMessage}
+        />
+      </Form>
+    </Formik>
   );
 };
 
-export default Form;
+export default SubmitForm;

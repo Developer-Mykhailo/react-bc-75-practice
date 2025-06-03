@@ -38,22 +38,23 @@
   color: var(--color-dark);
 
   position: absolute;
-  top: 0;
+  bottom: 0;
   right: 0;
 }
-
-.icon {
-  width: 40px;
-  height: 40px;
-  fill: var(--color-gray);
-}
-
-.errorMessage {
+.error {
   position: absolute;
+  bottom: -40px;
+  color: red;
+  font-weight: 500;
   left: 50%;
   transform: translateX(-50%);
-  bottom: -25px;
-  color: red;
-  font-weight: bold;
-  font-size: 20px;
+}
+
+.submitButton {
+  composes: button;
+  right: 0;
+}
+.editButton {
+  composes: button;
+  right: 40px;
 }
