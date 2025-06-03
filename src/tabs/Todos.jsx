@@ -5,12 +5,15 @@ import Section from "../components/Section/Section";
 import { nanoid } from "nanoid";
 import TodoList from "../components/Todos/TodoList";
 import SearchBox from "../components/Todos/SearchBox/SearchBox";
+import EditForm from "../components/Todos/EditForm/EditForm";
 
 const Todos = () => {
   const [todos, setTodos] = useState(
     () => JSON.parse(localStorage.getItem("todos")) || []
   );
   const [filter, setFilter] = useState("");
+
+  const [currentTodo, setCurrentTodo] = useState(null);
 
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
@@ -25,6 +28,10 @@ const Todos = () => {
     setTodos(todos.filter((todo) => todo.id !== id));
   };
 
+  const handleEdit = (todo) => {
+    setCurrentTodo(todo);
+  };
+
   const handleChangeFilter = (text) => {
     setFilter(text);
   };
@@ -33,12 +40,38 @@ const Todos = () => {
     todo.text.toLowerCase().includes(filter.toLowerCase())
   );
 
+  const cancelUpdateTodo = () => {
+    setCurrentTodo(null);
+  };
+
+  const updateTodo = (text) => {
+    setTodos(
+      todos.map((todo) =>
+        todo.id === currentTodo.id ? { ...currentTodo, text } : todo
+      )
+    );
+    cancelUpdateTodo();
+  };
+
   return (
     <Section>
       <Container>
-        <Form onSubmit={addTodo} />
+        {currentTodo ? (
+          <EditForm
+            cancelUpdateTodo={cancelUpdateTodo}
+            updateTodo={updateTodo}
+            text={currentTodo.text}
+          />
+        ) : (
+          <Form onSubmit={addTodo} />
+        )}
         <SearchBox handleChangeFilter={handleChangeFilter} />
-        <TodoList todos={filteredTodos} deleteTodo={deleteTodo} />
+        <TodoList
+          isEditindg={Boolean(currentTodo)}
+          todos={filteredTodos}
+          deleteTodo={deleteTodo}
+          handleEdit={handleEdit}
+        />
       </Container>
     </Section>
   );
