@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "axios": "^1.9.0",
     "clsx": "^2.1.1",
     "clx": "^1.0.0",
     "date-fns": "^4.1.0",
