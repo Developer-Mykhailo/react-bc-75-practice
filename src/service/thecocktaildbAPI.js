@@ -17,6 +17,24 @@ export const getRandomCocktails = async () => {
   });
 };
 
+export const getCocktailsByQuery = async (query) => {
+  const { data } =
+    await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${query}
+`);
+  return data.drinks
+    ? data.drinks.map(({ idDrink, strDrink, strDrinkThumb, strGlass }) => {
+        return { idDrink, strDrink, strDrinkThumb, strGlass };
+      })
+    : [];
+};
+
+export const getCocktailIngridients = async (cocktailID) => {
+  const { data } =
+    await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?iid=${cocktailID}
+`);
+  return data.ingredients;
+};
+
 export const getCocktailDetails = async (cocktailId) => {
   const { data } = await axios.get(
     `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${cocktailId}`
