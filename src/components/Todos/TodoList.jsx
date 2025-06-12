@@ -1,18 +1,22 @@
+import { useSelector } from "react-redux";
 import Grid from "../Grid/Grid";
 import GridItem from "../GridItem/GridItem";
 import TodoItem from "./TodoItem/TodoItem";
 
-const TodoList = ({ todos, deleteTodo, handleEdit, isEditindg }) => {
+const TodoList = ({ isEditindg }) => {
+  const todos = useSelector((state) => state.todos.items);
+  const filter = useSelector((state) => state.filter);
+  const filteredTodos = todos.filter((todo) =>
+    todo.text.toLowerCase().includes(filter.toLowerCase())
+  );
   return (
     <Grid>
-      {todos.map((todo, index) => (
+      {filteredTodos.map((todo, index) => (
         <GridItem key={todo.id}>
           <TodoItem
             isEditindg={isEditindg}
-            handleEdit={handleEdit}
             text={todo.text}
             count={index + 1}
-            deleteTodo={deleteTodo}
             id={todo.id}
           />
         </GridItem>

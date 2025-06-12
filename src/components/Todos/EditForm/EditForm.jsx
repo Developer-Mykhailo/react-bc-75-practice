@@ -3,10 +3,13 @@ import { MdOutlineCancel } from "react-icons/md";
 import s from "./EditForm.module.css";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { validationSchema } from "../../../validation/validation";
+import { useDispatch } from "react-redux";
+import { setCurrentToDo, updateToDo } from "../../../redux/action";
 
-function EditForm({ text, updateTodo, cancelUpdateTodo }) {
+function EditForm({ text }) {
+  const dispatch = useDispatch();
   const handleSumbit = ({ text }) => {
-    updateTodo(text);
+    dispatch(updateToDo(text));
   };
 
   return (
@@ -24,7 +27,9 @@ function EditForm({ text, updateTodo, cancelUpdateTodo }) {
         <button
           className={s.editButton}
           type="button"
-          onClick={cancelUpdateTodo}
+          onClick={() => {
+            dispatch(setCurrentToDo(null));
+          }}
         >
           <MdOutlineCancel color="red" size="16px" />
         </button>
