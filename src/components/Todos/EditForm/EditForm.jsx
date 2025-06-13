@@ -4,7 +4,7 @@ import s from "./EditForm.module.css";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { validationSchema } from "../../../validation/validation";
 import { useDispatch } from "react-redux";
-import { setCurrentToDo, updateToDo } from "../../../redux/action";
+import { setCurrentToDo, updateToDo } from "../../../redux/todoSlice";
 
 function EditForm({ text }) {
   const dispatch = useDispatch();

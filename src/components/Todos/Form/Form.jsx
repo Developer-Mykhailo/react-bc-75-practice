@@ -4,7 +4,7 @@ import style from "./Form.module.css";
 import { validationSchema } from "../../../validation/validation";
 import { useDispatch } from "react-redux";
 import { nanoid } from "nanoid";
-import { addToDo } from "../../../redux/action";
+import { addToDo } from "../../../redux/todoSlice";
 
 const SubmitForm = () => {
   const dispatch = useDispatch();

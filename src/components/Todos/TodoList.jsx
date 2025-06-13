@@ -5,7 +5,7 @@ import TodoItem from "./TodoItem/TodoItem";
 
 const TodoList = ({ isEditindg }) => {
   const todos = useSelector((state) => state.todos.items);
-  const filter = useSelector((state) => state.filter);
+  const filter = useSelector((state) => state.filter.text);
   const filteredTodos = todos.filter((todo) =>
     todo.text.toLowerCase().includes(filter.toLowerCase())
   );

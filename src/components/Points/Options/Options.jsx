@@ -1,13 +1,16 @@
+import { useDispatch } from "react-redux";
 import css from "./Options.module.css";
+import { resetPoints, setPoints } from "../../../redux/pointsSlice";
 
-const Options = ({ handleClick, points, totalPoints, resetPoints }) => {
+const Options = ({ points, totalPoints }) => {
+  const dispatch = useDispatch();
   return (
     <ul className={css.list}>
       {points.map((key, index) => (
         <li key={key}>
           <button
             className={css.button}
-            onClick={() => handleClick(key, index + 1)}
+            onClick={() => dispatch(setPoints({ key, value: index + 1 }))}
           >
             {key}
           </button>
@@ -15,7 +18,10 @@ const Options = ({ handleClick, points, totalPoints, resetPoints }) => {
       ))}
       {totalPoints > 0 && (
         <li>
-          <button onClick={resetPoints} className={css.resetButton}>
+          <button
+            onClick={() => dispatch(resetPoints())}
+            className={css.resetButton}
+          >
             Reset
           </button>
         </li>
