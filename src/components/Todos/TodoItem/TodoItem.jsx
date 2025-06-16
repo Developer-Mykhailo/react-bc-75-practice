@@ -1,7 +1,8 @@
 import { useDispatch } from "react-redux";
 import style from "./TodoItem.module.css";
 import { RiDeleteBinLine, RiEdit2Line } from "react-icons/ri";
-import { deleteToDo, setCurrentToDo } from "../../../redux/todoSlice";
+import { setCurrentToDo } from "../../../redux/todoSlice";
+import { deleteToDos } from "../../../redux/operation";
 
 const TodoItem = ({ text, count, id, isEditindg }) => {
   const dispatch = useDispatch();
@@ -12,7 +13,7 @@ const TodoItem = ({ text, count, id, isEditindg }) => {
       <button
         disabled={isEditindg}
         onClick={() => {
-          dispatch(deleteToDo(id));
+          dispatch(deleteToDos(id));
         }}
         className={style.deleteButton}
         type="button"
