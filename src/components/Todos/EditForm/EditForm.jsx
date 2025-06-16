@@ -4,12 +4,13 @@ import s from "./EditForm.module.css";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { validationSchema } from "../../../validation/validation";
 import { useDispatch } from "react-redux";
-import { setCurrentToDo, updateToDo } from "../../../redux/todoSlice";
+import { setCurrentToDo } from "../../../redux/todoSlice";
+import { editToDos } from "../../../redux/operation";
 
-function EditForm({ text }) {
+function EditForm({ text, id }) {
   const dispatch = useDispatch();
   const handleSumbit = ({ text }) => {
-    dispatch(updateToDo(text));
+    dispatch(editToDos({ text, id }));
   };
 
   return (

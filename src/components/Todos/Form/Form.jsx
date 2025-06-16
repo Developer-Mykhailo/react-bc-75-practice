@@ -3,13 +3,12 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import style from "./Form.module.css";
 import { validationSchema } from "../../../validation/validation";
 import { useDispatch } from "react-redux";
-import { nanoid } from "nanoid";
-import { addToDo } from "../../../redux/todoSlice";
+import { addToDos } from "../../../redux/operation";
 
 const SubmitForm = () => {
   const dispatch = useDispatch();
   const handleSumbit = ({ text }, actions) => {
-    dispatch(addToDo({ text, id: nanoid() }));
+    dispatch(addToDos({ text }));
     actions.resetForm();
   };
 
