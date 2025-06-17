@@ -9,11 +9,16 @@ import { useEffect } from "react";
 import { fetchToDos } from "../redux/operation";
 import Loader from "../components/Loader/Loader";
 import Heading from "../components/Heading/Heading";
+import {
+  selectCurrentTodo,
+  selectIsError,
+  selectIsLoading,
+} from "../redux/selectors";
 
 const Todos = () => {
-  const currentTodo = useSelector((state) => state.todos.currentToDo);
-  const isLoading = useSelector((state) => state.todos.isLoading);
-  const isError = useSelector((state) => state.todos.isError);
+  const currentTodo = useSelector(selectCurrentTodo);
+  const isLoading = useSelector(selectIsLoading);
+  const isError = useSelector(selectIsError);
 
   const dispatch = useDispatch();
   useEffect(() => {

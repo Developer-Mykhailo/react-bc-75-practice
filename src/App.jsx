@@ -14,6 +14,9 @@ const SearchCocktails = lazy(() => import("./pages/SearchCocktails"));
 const CocktailIngridients = lazy(() =>
   import("./components/Cocktails/CocktailIngridients")
 );
+const LoginPage = lazy(() => import("./pages/LoginPage"));
+const RegisterPage = lazy(() => import("./pages/RegisterPage"));
+
 import Header from "./components/Header/Header";
 import Loader from "./components/Loader/Loader";
 
@@ -24,6 +27,8 @@ function App() {
       <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
           <Route path="/cocktails" element={<Cocktails />} />
           <Route path="/searchCocktails" element={<SearchCocktails />} />
           <Route path="/cocktails/:cocktailId" element={<CocktailDetails />}>
