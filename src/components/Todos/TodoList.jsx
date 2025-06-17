@@ -2,10 +2,11 @@ import { useSelector } from "react-redux";
 import Grid from "../Grid/Grid";
 import GridItem from "../GridItem/GridItem";
 import TodoItem from "./TodoItem/TodoItem";
+import { selectFilter, selectTodos } from "../../redux/selectors";
 
 const TodoList = ({ isEditindg }) => {
-  const todos = useSelector((state) => state.todos.items);
-  const filter = useSelector((state) => state.filter.text);
+  const todos = useSelector(selectTodos);
+  const filter = useSelector(selectFilter);
   const filteredTodos = todos.filter((todo) =>
     todo.text.toLowerCase().includes(filter.toLowerCase())
   );

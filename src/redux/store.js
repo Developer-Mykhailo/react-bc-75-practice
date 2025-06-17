@@ -13,6 +13,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { toDosReducer } from "./todoSlice";
 import { filterReducer } from "./filterSlice";
 import { pointsReducer } from "./pointsSlice";
+import { authReducer } from "./auth/authSlice";
 
 // const persistConfig = {
 //   key: "todos",
@@ -28,6 +29,7 @@ export const store = configureStore({
     todos: toDosReducer,
     filter: filterReducer,
     points: pointsReducer,
+    auth: authReducer,
   },
   // middleware: (getDefaultMiddleware) =>
   //   getDefaultMiddleware({

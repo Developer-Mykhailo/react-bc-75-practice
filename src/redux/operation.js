@@ -14,6 +14,12 @@ export const fetchToDos = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
+  },
+  {
+    condition(_, { getState }) {
+      const isEmptyList = getState().todos.items.length === 0;
+      return isEmptyList;
+    },
   }
 );
 
