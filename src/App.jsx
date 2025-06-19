@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+import { lazy } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 
 const Props = lazy(() => import("./pages/Props"));
@@ -17,14 +17,12 @@ const CocktailIngridients = lazy(() =>
 const LoginPage = lazy(() => import("./pages/LoginPage"));
 const RegisterPage = lazy(() => import("./pages/RegisterPage"));
 
-import Header from "./components/Header/Header";
-import Loader from "./components/Loader/Loader";
+import Layout from "./components/Layout";
 
 function App() {
   return (
     <>
-      <Header />
-      <Suspense fallback={<Loader />}>
+      <Layout>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
@@ -41,7 +39,7 @@ function App() {
           <Route path="/props" element={<Props />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
-      </Suspense>
+      </Layout>
     </>
   );
 }
