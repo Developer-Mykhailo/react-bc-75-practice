@@ -6,7 +6,7 @@ export const selectIsLoading = (state) => state.todos.isLoading;
 export const selectIsError = (state) => state.todos.isError;
 export const selectFilter = (state) => state.filter.text;
 
-export const selectFilteredContacts = createSelector(
+export const selectFilteredTodos = createSelector(
   [selectFilter, selectTodos],
   (filter, todos) => {
     return todos.filter((todo) =>

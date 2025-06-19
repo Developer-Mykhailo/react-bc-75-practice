@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { addToDos, deleteToDos, editToDos, fetchToDos } from "./operation";
+import { logOut } from "./auth/authOperations";
 
 const slice = createSlice({
   name: "todos",
@@ -67,6 +68,9 @@ const slice = createSlice({
       .addCase(editToDos.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = action.payload;
+      })
+      .addCase(logOut.fulfilled, (state) => {
+        state.items = [];
       }),
 });
 export const { setCurrentToDo } = slice.actions;
