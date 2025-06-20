@@ -5,8 +5,15 @@ import { fetchLogin } from "../../redux/auth/authOperations";
 import toast from "react-hot-toast";
 import s from "./LoginForm.module.css";
 
+import usePasswordToggle from "../../hooks/usePasswordToggle";
+import ToggleIcon from "../ToggleIcon/ToggleIcon";
+
 const LoginForm = () => {
   const dispatch = useDispatch();
+  const [showPassword, setShowPassword] = usePasswordToggle([
+    "password",
+    "confirmPassword",
+  ]);
 
   const handleSubmit = async (values) => {
     try {
@@ -38,9 +45,29 @@ const LoginForm = () => {
               className={s.input}
               placeholder="Enter your password"
               name="password"
-              type={"password"}
+              type={showPassword.password ? "text" : "password"}
             />
             <ErrorMessage name="password" component="div" className={s.error} />
+
+            <ToggleIcon
+              onClick={() => setShowPassword("password")}
+              showPassword={showPassword.password}
+            />
+          </div>
+
+          <div className={s.fieldBox}>
+            <Field
+              className={s.input}
+              placeholder="Enter your password"
+              name="password"
+              type={showPassword.confirmPassword ? "text" : "password"}
+            />
+            <ErrorMessage name="password" component="div" className={s.error} />
+
+            <ToggleIcon
+              onClick={() => setShowPassword("confirmPassword")}
+              showPassword={showPassword.confirmPassword}
+            />
           </div>
 
           <button className={s.button} type="submit">
