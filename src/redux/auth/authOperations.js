@@ -4,7 +4,7 @@ import axios from "axios";
 // hjjdfjjfh@gmail.com
 // hjjdf1&7L
 
-const instance = axios.create({
+export const instance = axios.create({
   baseURL: "https://task-manager-api.goit.global/",
 });
 
@@ -47,6 +47,24 @@ export const logOut = createAsyncThunk(
     try {
       await instance.post("/users/logout");
       clearAuthHeader();
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const refreshUser = createAsyncThunk(
+  "auth/refresh",
+  async (_, { rejectWithValue, getState }) => {
+    const state = getState();
+    const persistedToken = state.auth.token;
+    if (!persistedToken) {
+      return rejectWithValue("no-token");
+    }
+    setAuthHeader(persistedToken);
+    try {
+      const { data } = await instance.get("/users/me");
+      return data;
     } catch (error) {
       return rejectWithValue(error.message);
     }
